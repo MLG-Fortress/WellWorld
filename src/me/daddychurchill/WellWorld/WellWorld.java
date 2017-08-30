@@ -45,7 +45,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 //TODO Four/Two castles facing each other
 //TODO Single castle for storming purposes
 //TODO Dungeon crawler
-//TODO Ocean world with “floating islands”
+//TODO Ocean world with floating islands
 
 //DONE Basalt field (http://www.flickr.com/photos/golfie88/3712377542/)
 //DONE Desert with cactus
@@ -123,7 +123,7 @@ public class WellWorld extends JavaPlugin {
 		//PluginManager pm = getServer().getPluginManager();
 		
 		// add the commands
-		addCommand("wellworld", new WellWorldCreateCMD(this));
+		//addCommand("wellworld", new WellWorldCreateCMD(this));
 		// wellworld:
 		//    description: create/goto/leave WellWorld
 		//    usage: /wellworld [leave]
