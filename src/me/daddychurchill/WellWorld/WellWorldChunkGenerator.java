@@ -9,8 +9,10 @@ import me.daddychurchill.WellWorld.Support.InitialBlocks;
 import me.daddychurchill.WellWorld.WellTypes.AlienCavernWell;
 import me.daddychurchill.WellWorld.WellTypes.AlienWorldWell;
 import me.daddychurchill.WellWorld.WellTypes.BasaltFieldWell;
+import me.daddychurchill.WellWorld.WellTypes.Dinnerbone.DinnerboneMoonWell;
 import me.daddychurchill.WellWorld.WellTypes.ForestWell;
 import me.daddychurchill.WellWorld.WellTypes.KnollsWell;
+import me.daddychurchill.WellWorld.WellTypes.NotUsed.*;
 import me.daddychurchill.WellWorld.WellTypes.PlatformWell;
 import me.daddychurchill.WellWorld.WellTypes.RealisticMoonWell;
 import me.daddychurchill.WellWorld.WellTypes.SmoothSnowWell;
@@ -23,6 +25,7 @@ import me.daddychurchill.WellWorld.WellTypes.Codename_B.BananaTrigWell;
 import me.daddychurchill.WellWorld.WellTypes.Codename_B.BananaVoidWell;
 import me.daddychurchill.WellWorld.WellTypes.Khyperia.KhylandWell;
 import me.daddychurchill.WellWorld.WellTypes.Khyperia.PancakeWell;
+import me.daddychurchill.WellWorld.WellTypes.s1mpl3x.MicroNordicWell;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -223,7 +226,7 @@ public class WellWorldChunkGenerator extends ChunkGenerator {
 				double noise = new HighQualityRandom(wellseed).nextDouble();
 				
 				// pick one from the list
-				wellmanager = chooseWellManager(noise, world, wellseed, wellX, wellZ);
+				wellmanager = chooseMoreWellManager(noise, world, wellseed, wellX, wellZ);
 			}
 			
 			// remember it for the next time
@@ -320,6 +323,94 @@ public class WellWorldChunkGenerator extends ChunkGenerator {
 
 		}
 	}
+
+	//RoboMWM start
+	private static final int wellTypeMoreCount = 31;
+	private WellArchetype chooseMoreWellManager(double noise, World world, long seed, int wellX, int wellZ) {
+
+		int index = NoiseGenerator.floor(noise * wellTypeCount);
+//		int index = Math.abs(wellZ) % wellTypeCount;
+		switch (index) {
+			// The generic world
+			case 0:
+			default:
+				return new KnollsWell(world, seed, wellX, wellZ);
+
+			case 1:
+				return new AlienWorldWell(world, seed, wellX, wellZ);
+			case 2:
+				return new AlienCavernWell(world, seed, wellX, wellZ);
+			case 3:
+				return new RealisticMoonWell(world, seed, wellX, wellZ);
+			case 4:
+				return new BasaltFieldWell(world, seed, wellX, wellZ);
+			case 5:
+				return new PlatformWell(world, seed, wellX, wellZ);
+			case 6:
+				return new VolcanoWell(world, seed, wellX, wellZ);
+			case 7:
+				return new ForestWell(world, seed, wellX, wellZ); // DEAD_BUSH
+			case 8:
+				return new SmoothSnowWell(world, seed, wellX, wellZ);
+
+			// Codename_B's Banana wells
+			case 9:
+				return new BananaOctaveWell(world, seed, wellX, wellZ);
+			case 10:
+				return new BananaSkyWell(world, seed, wellX, wellZ);
+			case 11:
+				return new BananaTrigWell(world, seed, wellX, wellZ);
+			case 12:
+				return new BananaIceWell(world, seed, wellX, wellZ);
+			case 13:
+				return new BananaVoidWell(world, seed, wellX, wellZ);
+			case 14:
+				return new BananaForestWell(world, seed, wellX, wellZ);
+
+			// Khyperia's TrippyTerrain based wells
+			case 15:
+				return new KhylandWell(world, seed, wellX, wellZ);
+			case 16:
+				return new PancakeWell(world, seed, wellX, wellZ);
+
+//      debug wells
+		case 17:
+			return new TypePickerWell(world, seed, wellX, wellZ);
+	 	case 18:
+			return new CityPlatWell(world, seed, wellX, wellZ);
+	 	case 19:
+			return new RoadPlatWell(world, seed, wellX, wellZ);
+	 	case 20:
+			return new RiverPlatWell(world, seed, wellX, wellZ);
+	 	case 21:
+			return new CityRoadsPlatWell(world, seed, wellX, wellZ);
+	 	case 22:
+			return new MineralPlatWell(world, seed, wellX, wellZ);
+	 	case 23:
+			return new PlanningZonesPlatWell(world, seed, wellX, wellZ);
+
+//      not enabled as I don't have permission to do so
+		case 24:
+			return new MicroNordicWell(world, seed, wellX, wellZ);
+		case 25:
+			return new DinnerboneMoonWell(world, seed, wellX, wellZ);
+
+// 		not enabled as they are kind of boring :-)
+		case 26:
+			return new VeryEmptyWell(world, seed, wellX, wellZ);
+		case 27:
+			return new VerySimpleFlatWell(world, seed, wellX, wellZ);
+		case 28:
+			return new VerySimpleWaterWell(world, seed, wellX, wellZ);
+		case 29:
+			return new VerySimpleHillyWell(world, seed, wellX, wellZ);
+		case 30:
+			return new SimplexNoiseWell(world, seed, wellX, wellZ);
+		case 31:
+			return new SimplexOctaveWell(world, seed, wellX, wellZ);
+
+		}
+	} //RoboMWM end
 	
 	// Supporting code used by getWellManager
 	private int calcOrigin(int i) {
