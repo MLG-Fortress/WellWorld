@@ -140,14 +140,14 @@ public class DinnerboneMoonWell extends WellArchetype {
             //EC: for some reason, sometimes the relative block is not a fence post... maybe it is a Minecraft/Bukkit issue
 			Block signBlock = top.getRelative(direction);
 			if (signBlock.getType() == Material.BIRCH_FENCE) {
-				signBlock.setType(Material.WALL_SIGN);
+				signBlock.setType(Material.OAK_WALL_SIGN);
 	            BlockState state = signBlock.getState();
 	
 	            if (state instanceof Sign) {
 	                Sign sign = (Sign)state;
-	                org.bukkit.material.Sign data = (org.bukkit.material.Sign)state.getData();
-	
-	                data.setFacingDirection(direction);
+	                org.bukkit.block.data.type.WallSign data = (org.bukkit.block.data.type.WallSign) sign.getBlockData();
+	                data.setFacing(direction);
+	                sign.setBlockData(data);
 	                sign.setLine(0, "---------|*****");
 	                sign.setLine(1, "---------|*****");
 	                sign.setLine(2, "-------------");

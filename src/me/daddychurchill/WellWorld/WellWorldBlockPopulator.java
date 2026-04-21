@@ -57,7 +57,7 @@ public class WellWorldBlockPopulator extends BlockPopulator {
 					int y = WellWorldChunkGenerator.wallHeightInBlocks;
 					int z = 0;
 					Block block = source.getBlock(x, y, z);
-					block.setType(Material.SIGN);
+					block.setType(Material.OAK_SIGN);
 					
 					BlockData data = block.getBlockData();
 					if (data instanceof org.bukkit.block.data.type.Sign) {

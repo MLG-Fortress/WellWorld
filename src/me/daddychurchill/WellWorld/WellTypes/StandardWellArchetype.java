@@ -67,7 +67,7 @@ public abstract class StandardWellArchetype extends WellArchetype {
 		materialTop = Material.GRASS_BLOCK;
 		materialLiquidBase = Material.SAND;
 		materialLiquid = Material.WATER;
-		materialBlades = Material.GRASS;
+		materialBlades = Material.SHORT_GRASS;
 		materialFlower = random.nextBoolean() ? Material.POPPY : Material.DANDELION;
 		
 		materialMineral = materialBottom;
